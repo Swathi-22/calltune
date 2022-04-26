@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<head>
+    <title>Product Details</title>
+</head>
+
+
+<div id="top1" class="wrapper">
+
+    <!-- START PAGE CONTENT -->
+    <section id="page-content" class="page-wrapper section">
+
+        <!-- BANNER-SECTION START -->
+        <div class="banner-section ptb-60">
+            <div class="container">
+
+            </div>
+        </div>
+        <!-- BANNER-SECTION END -->
+        <!-- PRODUCT TAB SECTION START -->
+       
+        <div class="product-tab-section section-bg-tb pt-80 pb-55">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-center section-title mb-40">
+                            <h2 style="color:#fd7e14" class="uppercase">{{category_name}}</h2>
+                        </div>
+                    </div>
+                </div>
+                <input id="category" type="text" value="{{category}}" hidden>
+                <div class="row mt-5 mb-5 selectt">
+                    <div class="col-6">
+
+                        <form>{% csrf_token %}
+
+                            <select name="" id="brand" class="form-control notranslate">Brand
+                                <option selected>Select Brand</option>
+                                <option value="0">All</option>
+                                {% for i in brand %}
+                                <option value="{{i.id}}">{{i.brand_name}}</option>
+
+
+                                {% endfor %}
+                            </select>
+
+                        </form>
+
+                    </div>
+                    <div class="col-6">
+                        <select class="form-control notranslate" name="" id="model">Model
+                            <option value="0" selected>Select Model</option>
+
+                        </select>
+                    </div>
+                </div>
+                <input type="hidden" value="{{sessionKey}}" name="sessionId" id="sessionId">
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <!-- popular-product start -->
+                    <div id="popular-product" class="tab-pane active show">
+                        <div class="row" id="rowImageViewDiv">
+                            {% for i in product %}
+                            <div class="col-lg-3 col-6" id="viewImageDiv">
+                                <div class="product-item product-item-2">
+                                    <div id="viewImage" class="product-img">
+                                        <a href="#product">
+                                            <img src="{{ i.product_image.url }}" alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="product-info">
+                                        <h6 class="product-title text-left">
+                                            <a href="#product">{{i.product_name}}</span></a>
+                                        </h6>
+                                        <h5 class="brand-name notranslate" id="brandName">{{i.brand}}</h5>
+                                        <h5 class="brand-name">{{i.model}}</h5>
+                                        <h4 class="pro-price">SAR.{{i.price}}.00</h4>
+                                        <form method="POST">
+                                            {% csrf_token %}
+                                            
+                                            <button value="{{i.id}}" type="button" onclick="btnCart('{{i.id}}',this)"
+                                                class="btnn mt-3 mb-3">Add to Cart</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-tab-section section-bg-tb pt-80 pb-55">
+    </section>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="{% static 'web/view_product_details.js' %}"></script>
+
+
+{% endblock %}
+

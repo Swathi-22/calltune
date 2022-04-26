@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+   
+    <title>Send To whatsapp</title>
+   
+</head>
+  <!-- Body main wrapper start -->
+  <div id="top1" class="wrapper">
+
+        <!-- BANNER-SECTION START -->
+        <div class="banner-section ptb-80">
+        <div class="container">
+
+        </div>
+        </div>
+        <!-- BANNER-SECTION END -->
+        <section class="carttt">
+
+            
+            <div class="container">
+                
+                <div class="row checkout justify-content-center">
+    
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12 whatsapp-box" >
+                            <div class="invoice">
+                                <label for="" style="color: black; font-weight: 600;">Name</label>
+                                <p> {{name}}</p>
+
+                                <label for="" style="color: black; font-weight: 600;">Address</label>
+                                <p> {{address}}</p>
+
+                                <label for="" style="color: black; font-weight: 600;">Phone</label>
+                                <p> {{phone}}</p>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12 whatsapp-box">
+                            <div class="text-center">
+                                <h4> Share to whatsapp </h4>
+                                <a class="btnn-3" href="{{link}}"> 
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}
+   

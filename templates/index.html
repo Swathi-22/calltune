@@ -1,0 +1,265 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<head>
+    <title>Calltone</title>
+</head>
+
+
+<!-- Body main wrapper start -->
+<div id="top1" class="wrapper">
+
+    <!-- START PAGE CONTENT -->
+    <section id="page-content" class="page-wrapper section">
+
+        <!-- BANNER-SECTION START -->
+        <div class="banner-section ptb-60">
+            <div class="container">
+
+            </div>
+        </div>
+
+        <!-- PRODUCT TAB SECTION START -->
+
+        <div id="product" class="product-tab-section section-bg-tb pt-80 pb-30">
+            <div class="container-fluid">
+                <input type="text" id="sessionId" value="{{session}}" hidden>
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="section-title mb-40">
+                            <h2 style="color:#fd7e14" class="uppercase">products</h2>
+                            <h6>There are many variations of passages of brands available,</h6>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 produ">
+                        <div class="product-tab pro-tab-menu pro-tab-menu-2">
+                            <!-- Nav tabs -->
+                            <ul class="nav">
+
+                                {% for i in category %}
+                                <li class="d-none d-lg-block"><a
+                                        href="/view_product_details/{{i.category}}/">{{i.category}}</a></li>
+
+                                {% endfor %}
+                                <li><input type="text" placeholder="Search" id="search-tile" class="form-control"></li>
+                                {% csrf_token %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tab panes -->
+                <div class="tab-content" id="categoryDIV">
+                    <!-- popular-product start -->
+                    <div id="popular-product" class="tab-pane active show">
+                        <div class="row justify-content-center">
+
+
+                            {% for i in category %}
+
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-6">
+                                <div class="product-item product-item-2">
+                                    <div class="product-img">
+                                        <a href="/view_product_details/{{i.category}}/">
+                                            <img src="{{i.category_image.url}}" alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="product-info">
+                                        <h6 class="product-title">
+                                            <a href="/view_product_details/{{i.category}}/">{{i.category}}</a>
+                                        </h6>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            {% endfor %}
+
+
+
+
+
+                        </div>
+                    </div>
+                    <!-- popular-product end -->
+
+
+                    <!-- Searched ProductList start -->
+                    <div class="tab-content" id="SearchedProduct">
+                        <!-- popular-product start -->
+                        <div id="popular-product" class="tab-pane active show">
+                            <div class="row" id="rowImageViewDiv">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Searched ProductList end -->
+                    <!-- best-seller start -->
+
+                    <!-- best-seller end -->
+                    <!-- special-offer start -->
+
+                    <!-- special-offer end -->
+                </div>
+            </div>
+
+            <div class="about-section mt-50 mb-50">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="section-title text-left ">
+                                <h2 class="uppercase">Who we are</h2>
+                                <h6 class="mb-40">There are many variations of products of brands available,</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="about-photo p-20 bg-img-1">
+                                <img src="{% static 'img/others/about.jpg' %}" alt="">
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="about-description mt-50">
+                                <p>We are providing great deals with our customers, We have great products etc.. We are
+                                    providing great deals with our customers, We have great products etc..We are
+                                    providing great deals with our customers, We have great products etc.. We are
+                                    providing great deals with our customers, We have great products etc..We are
+                                    providing great deals with our customers, We have great products etc..</p>
+
+                                <p>We are providing great deals with our customers, We have great products etc..We are
+                                    providing great deals with our customers, We have great products etc..We are
+                                    providing great deals with our customers, We have great products etc..We are
+                                    providing great deals with our customers, We have great products etc..We are
+                                    providing great deals with our customers, We have great products etc..We are
+                                    providing great deals with our customers, We have great products etc..We are
+                                    providing great deals with our customers, We have great products etc..</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- PRODUCT TAB SECTION END -->
+
+    </section>
+    <!-- End page content -->
+
+    <!-- BREADCRUMBS SETCTION END -->
+
+    <!-- Start page content -->
+    <section id="page-content" class="page-wrapper section">
+        <div class="section-title mb-40 mega-parent mt-40 text-center">
+            <h2 style="color:#fd7e14" class="uppercase">contact us</h2>
+        </div>
+        <!-- ADDRESS SECTION START -->
+        <div class="address-section mb-80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="contact-address box-shadow">
+                            <i class="zmdi zmdi-pin"></i>
+                            <h6 style="font-family:Tajawal">عمارة الراجحي الثانية</h6>
+                            <h6 dir="rtl" style="font-family:Tajawal"> 7569 البطحاء، العمل، الرياض 12643 2175، المملكة
+                                العربية السعودية </h6>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="contact-address box-shadow">
+                            <a style="font-family:Tajawal" href="tel:0590099210"> <i class="zmdi zmdi-phone"></i></a>
+                            <h6><a style="font-family:Tajawal" href="tel:0590099210">0590099210</a></h6>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="contact-address box-shadow">
+                            <a href="mailto:Info@calltone-ksa.com"> <i class="zmdi zmdi-email"></i></a>
+                            <h6> <a href="mailto:Info@calltone-ksa.com">Info@calltone-ksa.com</a></h6>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ADDRESS SECTION END -->
+
+        <!-- GOOGLE MAP SECTION START -->
+        <div class="google-map-section">
+            <div class="container">
+                <div class="map">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3626.405995786688!2d46.71460271499871!3d24.6441498841565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x8ed141cd5efa35db!2sThe%20second%20architecture%20Amaar%20Al%20Rajhi%20five!5e0!3m2!1sen!2sin!4v1632812613120!5m2!1sen!2sin"
+                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</div>
+<!--style-customizer end -->
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="{% static 'web/view_product_details.js' %}"></script>
+3
+<script>
+    $(document).ready(function () {
+
+        $('#search-tile').keyup(function () {
+            var search_Key = $('#search-tile').val()
+            if (search_Key != '') {
+                $("#popular-product").addClass("d-none");
+                var csrftoken = $('[name="csrfmiddlewaretoken"]').val();
+                data = {
+                    'search_Key': search_Key,
+                    csrfmiddlewaretoken: csrftoken
+                }
+                $.ajax({
+                    url: '/search/',
+                    type: 'POST',
+                    data: data,
+                    success: function (response) {
+                        $("#rowImageViewDiv").html('')
+                        console.log(response)
+                        for (var i = 0; i < response.jsonProductList.length; i++) {
+                            console.log(i)
+                            var html = ''
+                            html += '<div class="col-lg-3 col-6" id="viewImageDiv">'
+                            html += '<div class="product-item product-item-2">'
+                            html += '<div id="viewImage" class="product-img">'
+                            html += '<a href="#product">'
+                            html += '<img src="' + response.jsonProductList[i].product_image + '" alt="" />'
+                            html += '</a>'
+                            html += '</div>'
+                            html += '<div class="product-info">'
+                            html += '<h6 class="product-title text-left">'
+                            html += '<a href="#product">' + response.jsonProductList[i].product_name + '</span></a>'
+                            html += '</h6>'
+                            html += '<h5 class="brand-name notranslate" id="brandName">' + response.jsonProductList[i].brand + '</h5>'
+                            html += '<h5 class="brand-name">' + response.jsonProductList[i].model + '</h5>'
+                            html += '<h4 class="pro-price">SAR.' + response.jsonProductList[i].price + '.00</h4>'
+                            html += '<form method="POST">'
+                            html += '<button value="' + response.jsonProductList[i].id + '" type="button" onclick="btnCart(' + response.jsonProductList[i].id + ',this)" class="btnn mt-3 mb-3">Add to Cart</button>'
+                            html += '</form>'
+                            html += '</div>'
+                            html += '</div>'
+                            html += '</div>'
+                            $("#rowImageViewDiv").append(html);
+                        }
+                    }
+                });
+            }
+            else {
+                $("#rowImageViewDiv").html('')
+                $("#popular-product").removeClass("d-none");
+            }
+
+
+        })
+
+    })
+</script>
+{% endblock %}
