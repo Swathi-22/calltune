@@ -63,9 +63,12 @@
 }
 
 
+
 /* Normal desktop :992px. */
 @media (min-width: 992px) and (max-width: 1169px) {
-
+.plr-114 {
+    padding: 0 6px;
+}
 .plr-185 {
   padding: 0 30px;
 }
@@ -259,8 +262,15 @@
  
 /* Tablet desktop :768px. */
 @media (min-width: 768px) and (max-width: 991px) {
+  
+  .li-md{
+    padding-right: 56px;
+  }
+  .plr-114{
+    padding: 0 0px;
+  }
   .cart{
-    text-align: right;
+    text-align: center;
   }
   .cart i {
     font-size: 30px;
@@ -503,6 +513,7 @@ hr {
 /* =========== */
 .logo {
   padding: 38px 0;
+  text-align: center;
 }
 .logo img {
   width: 100px;
@@ -1349,6 +1360,7 @@ hr {
 }
  
 /* Large Mobile :480px. */
+
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   
 .container {
@@ -1387,6 +1399,7 @@ hr {
 
 } 
 @media only screen and (max-width: 375px){
+
   .pro-tab-menu ul li {
     margin-bottom: 5px;
     margin-left: 6px;
@@ -1400,7 +1413,7 @@ hr {
 @media only screen and (max-width: 326px){
   
   #product{
-    padding-top: 30px;
+    padding-top: 57px;
   }
   .checkout {
     background-color: #f2f2f2;
@@ -1489,5 +1502,24 @@ hr {
   color: #666666;
   font-size: 11px;
   font-weight: 500;
+}
+}
+@media only screen and (max-width: 767px){
+  .sm-search{
+    position: relative !important;
+    width: 60% !important;
+  }
+  input[type="text"], input[type="password"] {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid transparent;
+    box-shadow: 0 0 4px rgb(0 0 0 / 10%);
+    color: #999999;
+    font-size: 13px;
+    height: 40px;
+    margin-top: 13px;
+    width: 100%;
+}
+.goog-te-gadget .goog-te-combo {
+  margin: -27px 0 !important;
 }
 }
