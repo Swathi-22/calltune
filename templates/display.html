@@ -37,7 +37,7 @@
 
                         <form>{% csrf_token %}
 
-                            <select name="" id="brand" class="form-control notranslate">Brand
+                            <select name="" id="brand" class="form-control notranslate"  >Brand
                                 <option selected>Select Brand</option>
                                 <option value="0">All</option>
                                 {% for i in brand %}
@@ -51,7 +51,7 @@
 
                     </div>
                     <div class="col-6">
-                        <select class="form-control notranslate" name="" id="model">Model
+                        <select class="form-control notranslate"  name="" id="model">Model
                             <option value="0" selected>Select Model</option>
 
                         </select>
@@ -59,10 +59,10 @@
                 </div>
                 <input type="hidden" value="{{sessionKey}}" name="sessionId" id="sessionId">
                 <!-- Tab panes -->
-                <div class="tab-content">
+                <div class="tab-content" id="product-list">
                     <!-- popular-product start -->
                     <div id="popular-product" class="tab-pane active show">
-                        <div class="row" id="rowImageViewDiv">
+                        <div class="row">
                             {% for i in product %}
                             <div class="col-lg-3 col-6" id="viewImageDiv">
                                 <div class="product-item product-item-2">
@@ -91,6 +91,18 @@
                         </div>
                     </div>
                 </div>
+
+
+                <!-- Searched ProductList start -->
+                <div class="tab-content" id="SearchedProduct">
+                    <!-- popular-product start -->
+                    <div id="popular-product" class="tab-pane active show">
+                        <div class="row" id="rowImageViewDiv">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Searched ProductList end -->
             </div>
         </div>
 
@@ -102,6 +114,65 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="{% static 'web/view_product_details.js' %}"></script>
 
+
+<script>
+    $(document).ready(function () {
+
+        $('#search-tile').keyup(function () {
+            var search_Key = $('#search-tile').val()
+            var category=$('#category').val()
+            var brand=$('#brand').val()
+            var model=$('#model').val()
+            if (search_Key != '') {
+                $("#product-list").addClass("d-none");
+                var csrftoken = $('[name="csrfmiddlewaretoken"]').val();
+                data = {
+                    'search_Key': search_Key,
+                    csrfmiddlewaretoken: csrftoken
+                }
+                $.ajax({
+                    url: '/search/?category='+category+'&brand='+brand+'&model='+model,
+                    type: 'POST',
+                    data: data,
+                    success: function (response) {
+                        $("#rowImageViewDiv").html('')
+                        for (var i = 0; i < response.jsonProductList.length; i++) {
+                            var html = ''
+                            html += '<div class="col-lg-3 col-6" id="viewImageDiv">'
+                            html += '<div class="product-item product-item-2">'
+                            html += '<div id="viewImage" class="product-img">'
+                            html += '<a href="#product">'
+                            html += '<img src="' + response.jsonProductList[i].product_image + '" alt="" />'
+                            html += '</a>'
+                            html += '</div>'
+                            html += '<div class="product-info">'
+                            html += '<h6 class="product-title text-left">'
+                            html += '<a href="#product">' + response.jsonProductList[i].product_name + '</span></a>'
+                            html += '</h6>'
+                            html += '<h5 class="brand-name notranslate" id="brandName">' + response.jsonProductList[i].brand + '</h5>'
+                            html += '<h5 class="brand-name">' + response.jsonProductList[i].model + '</h5>'
+                            html += '<h4 class="pro-price">SAR.' + response.jsonProductList[i].price + '.00</h4>'
+                            html += '<form method="POST">'
+                            html += '<button value="' + response.jsonProductList[i].id + '" type="button" onclick="btnCart(' + response.jsonProductList[i].id + ',this)" class="btnn mt-3 mb-3">Add to Cart</button>'
+                            html += '</form>'
+                            html += '</div>'
+                            html += '</div>'
+                            html += '</div>'
+                            $("#rowImageViewDiv").append(html);
+                        }
+                    }
+                });
+            }
+            else {
+                $("#rowImageViewDiv").html('')
+                $("#product-list").removeClass("d-none");
+            }
+
+
+        })
+
+    })
+</script>
 
 {% endblock %}
 

@@ -162,11 +162,28 @@ def contact(request):
         pass
     return HttpResponse(template.render({'cart_length':cartLength},request))
 
+
+
 @method_decorator(csrf_exempt)
 def search_items(request):
     if request.POST:
         search_Key=request.POST['search_Key']
         prductlist = models.product.objects.filter(Q(product_name__icontains=search_Key) | Q(model__model_name__icontains=search_Key)| Q(category__category__icontains=search_Key)| Q(brand__brand_name__icontains=search_Key))
+
+        # if request.GET['category']:
+            
+        #     cID=request.GET['category']
+        #     if cID!='0':
+        #         print('category Not Zer '*20)
+        #         prductlist=prductlist.filter(category__id=cID)
+        # if request.GET['brand']:
+        #     bID=request.GET['brand']
+        #     if bID!='0':
+        #         prductlist=prductlist.filter(brand__id=bID)
+        # if request.GET['model']:
+        #     mID=request.GET['model']
+        #     if mID!='0':
+        #         prductlist=prductlist.filter(model__id=mID)
         jsonProductList=[]
         for product in prductlist:
             data={
